@@ -29,9 +29,9 @@ namespace DrawAirplan
 
         public Color DopColor { private set; get; }
 
-        public bool SideSpoiler { private set; get; }
+        public bool SideWing { private set; get; }
 
-        public bool BackSpoiler { private set; get; }
+        public bool BackWing { private set; get; }
 
         public bool Doors { private set; get; }
 
@@ -41,9 +41,9 @@ namespace DrawAirplan
             MaxSpeed = maxSpeed;
             Weight = weight;
             MainColor = mainColor;
-            DopColor = dopColor;           
-            SideSpoiler = sideSpoiler;
-            BackSpoiler = backSpoiler;
+            DopColor = dopColor;
+            SideWing = sideSpoiler;
+            BackWing = backSpoiler;
             Doors = doors;
         }
 
@@ -95,7 +95,7 @@ namespace DrawAirplan
         {
             Pen pen = new Pen(Color.Black);
             // рисуею задний спойлер самолёта
-            if (BackSpoiler)
+            if (BackWing)
             {
                 g.DrawEllipse(pen, _startPosX + 23, _startPosY - 40, 30, 60);
                 g.DrawRectangle(pen, _startPosX + 15, _startPosY - 40, 30, 40);
@@ -155,6 +155,7 @@ namespace DrawAirplan
                 g.DrawRectangle(pen, _startPosX + 170, _startPosY - 6, 8, 13);
                 g.DrawRectangle(pen, _startPosX + 175, _startPosY + 13, 8, 13);
             }
+
             // рисую иллюминаторы
             g.DrawEllipse(pen, _startPosX + 70, _startPosY - 4, 5, 5);
             g.DrawEllipse(pen, _startPosX + 80, _startPosY - 4, 5, 5);
@@ -180,7 +181,7 @@ namespace DrawAirplan
             
 
             // рисую боковой спойлер самолёта
-            if (SideSpoiler)
+            if (SideWing)
             {
                 g.DrawRectangle(pen, _startPosX + 10, _startPosY + 2, 10, 10);
                 g.DrawEllipse(pen, _startPosX -3, _startPosY + 2, 20, 10);

@@ -27,15 +27,11 @@ namespace DrawAirplan
             pictureBoxAirplans.Image = bmp;
         }
 
-        private void FormAirplan_Load(object sender, EventArgs e)
-        {
-
-        }
 
         private void buttonCreate_Click(object sender, EventArgs e)
         {
             Random rnd = new Random();
-            airplan = new Airbus(rnd.Next(250, 450), rnd.Next(1000, 2000), Color.White,
+            airplan = new Airbus(rnd.Next(250, 450), rnd.Next(1000, 2000), Color.LightBlue,
             Color.Blue, true, true, true);
             airplan.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBoxAirplans.Width,
             pictureBoxAirplans.Height);
