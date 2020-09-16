@@ -9,6 +9,7 @@ namespace DrawAirplan
 {
     class Airbus
     {
+        double bias = 2.5;
         private float _startPosX; //
 
         private float _startPosY; //
@@ -29,22 +30,19 @@ namespace DrawAirplan
 
         public Color DopColor { private set; get; }
 
-        public bool SideWing { private set; get; }
+        public bool LowerWindows { private set; get; }
 
-        public bool BackWing { private set; get; }
-
-        public bool Doors { private set; get; }
+        public bool AirplanChassis { private set; get; }
 
         public Airbus(int maxSpeed, float weight, Color mainColor, Color dopColor,
-            bool sideSpoiler, bool backSpoiler, bool doors)
+            bool lowerWindows, bool airplanChassis)
         {
             MaxSpeed = maxSpeed;
             Weight = weight;
             MainColor = mainColor;
             DopColor = dopColor;
-            SideWing = sideSpoiler;
-            BackWing = backSpoiler;
-            Doors = doors;
+            AirplanChassis = airplanChassis;
+            LowerWindows = lowerWindows;
         }
 
         public void SetPosition(int x, int y, int width, int height)
@@ -69,14 +67,14 @@ namespace DrawAirplan
                     break;
                 //влево
                 case Direction.Left:
-                    if (_startPosX + step > airplanWidth / 2.5)
+                    if (_startPosX + step > airplanWidth / bias)
                     {
                         _startPosX -= step;
                     }
                     break;
                 //вверх
                 case Direction.Up:
-                    if (_startPosY + step > airplanHeight / 2)
+                    if (_startPosY + step > airplanHeight / bias)
                     {
                         _startPosY -= step;
                     }
@@ -94,17 +92,15 @@ namespace DrawAirplan
         public void DrawTransport(Graphics g)
         {
             Pen pen = new Pen(Color.Black);
-            // рисуею задний спойлер самолёта
-            if (BackWing)
-            {
-                g.DrawEllipse(pen, _startPosX + 23, _startPosY - 40, 30, 60);
-                g.DrawRectangle(pen, _startPosX + 15, _startPosY - 40, 30, 40);
-                Brush backSpoiler = new SolidBrush(DopColor);
-                g.FillRectangle(backSpoiler, _startPosX + 15, _startPosY - 40, 28, 38);
-                g.FillEllipse(backSpoiler, _startPosX + 24, _startPosY - 40, 28, 58);                                
-            }
+            // рисую нижние иллюминаты
             
-            
+            g.DrawEllipse(pen, _startPosX + 23, _startPosY - 40, 30, 60);
+            g.DrawRectangle(pen, _startPosX + 15, _startPosY - 40, 30, 40);
+            Brush backSpoiler = new SolidBrush(DopColor);
+            g.FillRectangle(backSpoiler, _startPosX + 15, _startPosY - 40, 28, 38);
+            g.FillEllipse(backSpoiler, _startPosX + 24, _startPosY - 40, 28, 58);
+
+
             // рисую корпус самолёта
             g.DrawRectangle(pen, _startPosX, _startPosY, 20, 20);
             g.DrawEllipse(pen, _startPosX , _startPosY - 10, 100, 40);
@@ -123,15 +119,18 @@ namespace DrawAirplan
             g.DrawLine(pen, _startPosX + 220, _startPosY + 8, _startPosX + 220, _startPosY + 27);
 
             //рисую шасси
-            Brush chassis = new SolidBrush(Color.Black);
-            g.FillEllipse(chassis, _startPosX + 45, _startPosY + 30, 10, 10);
-            g.FillEllipse(chassis, _startPosX + 55, _startPosY + 30, 10, 10);
-            g.FillEllipse(chassis, _startPosX + 155, _startPosY + 30, 10, 10);
-            g.FillEllipse(chassis, _startPosX + 165, _startPosY + 30, 10, 10);
-            g.FillEllipse(chassis, _startPosX + 175, _startPosY + 30, 10, 10);
-            g.FillRectangle(chassis, _startPosX + 195, _startPosY + 28, 15, 7);
-            g.FillRectangle(chassis, _startPosX + 202, _startPosY + 33, 2, 6);
-            g.FillEllipse(chassis, _startPosX + 198, _startPosY + 36, 10, 10);
+            if (AirplanChassis)
+            {
+                Brush chassis = new SolidBrush(Color.Black);
+                g.FillEllipse(chassis, _startPosX + 45, _startPosY + 30, 10, 10);
+                g.FillEllipse(chassis, _startPosX + 55, _startPosY + 30, 10, 10);
+                g.FillEllipse(chassis, _startPosX + 155, _startPosY + 30, 10, 10);
+                g.FillEllipse(chassis, _startPosX + 165, _startPosY + 30, 10, 10);
+                g.FillEllipse(chassis, _startPosX + 175, _startPosY + 30, 10, 10);
+                g.FillRectangle(chassis, _startPosX + 195, _startPosY + 28, 15, 7);
+                g.FillRectangle(chassis, _startPosX + 202, _startPosY + 33, 2, 6);
+                g.FillEllipse(chassis, _startPosX + 198, _startPosY + 36, 10, 10);
+            }
 
             // рисую крыло самолёта            
             Brush airplaneWing = new SolidBrush(DopColor);
@@ -147,13 +146,22 @@ namespace DrawAirplan
             g.DrawRectangle(pen, _startPosX + 60, _startPosY + 15, 30, 20);
 
             // рисую двери
-            if (Doors)
+            
+            g.DrawRectangle(pen, _startPosX + 35, _startPosY + 13, 8, 13);
+            g.DrawRectangle(pen, _startPosX + 50, _startPosY - 6, 8, 13);
+            g.DrawRectangle(pen, _startPosX + 90, _startPosY - 6, 8, 13);
+            g.DrawRectangle(pen, _startPosX + 170, _startPosY - 6, 8, 13);
+            g.DrawRectangle(pen, _startPosX + 175, _startPosY + 13, 8, 13);
+            
+
+            if (LowerWindows)
             {
-                g.DrawRectangle(pen, _startPosX + 35, _startPosY + 13, 8, 13);
-                g.DrawRectangle(pen, _startPosX + 50, _startPosY - 6, 8, 13);
-                g.DrawRectangle(pen, _startPosX + 90, _startPosY - 6, 8, 13);
-                g.DrawRectangle(pen, _startPosX + 170, _startPosY - 6, 8, 13);
-                g.DrawRectangle(pen, _startPosX + 175, _startPosY + 13, 8, 13);
+                g.DrawEllipse(pen, _startPosX + 190, _startPosY + 15, 5, 5);
+                g.DrawEllipse(pen, _startPosX + 160, _startPosY + 15, 5, 5);
+                g.DrawEllipse(pen, _startPosX + 150, _startPosY + 15, 5, 5);
+                g.DrawEllipse(pen, _startPosX + 140, _startPosY + 15, 5, 5);
+                g.DrawEllipse(pen, _startPosX + 130, _startPosY + 15, 5, 5);
+                g.DrawEllipse(pen, _startPosX + 120, _startPosY + 15, 5, 5);
             }
 
             // рисую иллюминаторы
@@ -165,13 +173,7 @@ namespace DrawAirplan
             g.DrawEllipse(pen, _startPosX + 135, _startPosY - 4, 5, 5);
             g.DrawEllipse(pen, _startPosX + 145, _startPosY - 4, 5, 5);
             g.DrawEllipse(pen, _startPosX + 155, _startPosY - 4, 5, 5);
-            g.DrawEllipse(pen, _startPosX + 185, _startPosY - 4, 5, 5);
-            g.DrawEllipse(pen, _startPosX + 190, _startPosY + 15, 5, 5);
-            g.DrawEllipse(pen, _startPosX + 160, _startPosY + 15, 5, 5);
-            g.DrawEllipse(pen, _startPosX + 150, _startPosY + 15, 5, 5);
-            g.DrawEllipse(pen, _startPosX + 140, _startPosY + 15, 5, 5);
-            g.DrawEllipse(pen, _startPosX + 130, _startPosY + 15, 5, 5);
-            g.DrawEllipse(pen, _startPosX + 120, _startPosY + 15, 5, 5);
+            g.DrawEllipse(pen, _startPosX + 185, _startPosY - 4, 5, 5);       
            
             // нарисовал одно окно самолёта
             Brush window = new SolidBrush(MainColor);
@@ -180,18 +182,16 @@ namespace DrawAirplan
 
             
 
-            // рисую боковой спойлер самолёта
-            if (SideWing)
-            {
-                g.DrawRectangle(pen, _startPosX + 10, _startPosY + 2, 10, 10);
-                g.DrawEllipse(pen, _startPosX -3, _startPosY + 2, 20, 10);
-                g.DrawEllipse(pen, _startPosX + 15, _startPosY + 2, 15, 10);
-                Brush sideSpoiler = new SolidBrush(DopColor);
-                g.FillRectangle(sideSpoiler, _startPosX + 10, _startPosY + 2, 10, 10);
-                g.FillEllipse(sideSpoiler, _startPosX - 3, _startPosY + 2, 20, 10);
-                g.FillEllipse(sideSpoiler, _startPosX + 15, _startPosY + 2, 15, 10);
-            }
-
+            // рисую бокое крыло самолёта
+           
+            g.DrawRectangle(pen, _startPosX + 10, _startPosY + 2, 10, 10);
+            g.DrawEllipse(pen, _startPosX -3, _startPosY + 2, 20, 10);
+            g.DrawEllipse(pen, _startPosX + 15, _startPosY + 2, 15, 10);
+            Brush sideSpoiler = new SolidBrush(DopColor);
+            g.FillRectangle(sideSpoiler, _startPosX + 10, _startPosY + 2, 10, 10);
+            g.FillEllipse(sideSpoiler, _startPosX - 3, _startPosY + 2, 20, 10);
+            g.FillEllipse(sideSpoiler, _startPosX + 15, _startPosY + 2, 15, 10);
+           
         }
     }
 }

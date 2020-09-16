@@ -36,7 +36,7 @@ namespace DrawAirplan
         {
             Random rnd = new Random();
             airplan = new Airbus(rnd.Next(250, 450), rnd.Next(1000, 2000), Color.LightBlue,
-            Color.Blue, true, true, true);
+            Color.Blue, true, true);
             airplan.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBoxAirplans.Width,
             pictureBoxAirplans.Height);
             Draw();
