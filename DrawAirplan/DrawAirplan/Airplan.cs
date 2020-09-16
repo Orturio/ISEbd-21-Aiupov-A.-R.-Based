@@ -92,8 +92,8 @@ namespace DrawAirplan
         public void DrawTransport(Graphics g)
         {
             Pen pen = new Pen(Color.Black);
-            // рисую нижние иллюминаты
             
+            // рисую нижние иллюминаты            
             g.DrawEllipse(pen, _startPosX + 23, _startPosY - 40, 30, 60);
             g.DrawRectangle(pen, _startPosX + 15, _startPosY - 40, 30, 40);
             Brush backSpoiler = new SolidBrush(DopColor);
