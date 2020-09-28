@@ -27,11 +27,6 @@ namespace DrawAirplan
             pictureBoxAirplans.Image = bmp;
         }
 
-        private void FormAirplan_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void buttonCreate_Click(object sender, EventArgs e)
         {
             Random rnd = new Random();
