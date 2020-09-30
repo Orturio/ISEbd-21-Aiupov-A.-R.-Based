@@ -18,6 +18,7 @@ namespace DrawAirplan
         public float Weight { protected set; get; }
         
         public Color MainColor { protected set; get; }
+
         public void SetPosition(int x, int y, int width, int height)
         {
             // Продумать логику
@@ -26,7 +27,9 @@ namespace DrawAirplan
             _pictureWidth = width;
             _pictureHeight = height;
         }
+
         public abstract void DrawTransport(Graphics g);
+
         public abstract void MoveTransport(Direction direction);
     }
 }

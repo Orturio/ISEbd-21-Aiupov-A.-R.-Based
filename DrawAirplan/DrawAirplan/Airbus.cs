@@ -11,13 +11,14 @@ namespace DrawAirplan
         public bool LowerWindows { private set; get; }
        
         public Airbus(int maxSpeed, float weight, Color mainColor, Color dopColor,
-bool airplanChassis, bool lowerWindows) :
+bool airplanChassis, bool lowerWindows):
             base(maxSpeed, weight, mainColor, 220, 100)
         {
             DopColor = dopColor;
             AirplanChassis = airplanChassis;
             LowerWindows = lowerWindows;          
         }
+
         public override void DrawTransport(Graphics g)
         {
             Pen pen = new Pen(Color.Black);
@@ -43,7 +44,6 @@ bool airplanChassis, bool lowerWindows) :
                 g.DrawEllipse(pen, _startPosX + 130, _startPosY + 15, 5, 5);
                 g.DrawEllipse(pen, _startPosX + 120, _startPosY + 15, 5, 5);
             }
-
         }
     }
 }

@@ -23,6 +23,7 @@ namespace DrawAirplan
             this.airplanWidth = airplanWidth;
             this.airplanHeight = airplanHeight;
         }
+
         public override void MoveTransport(Direction direction)
         {
             float step = MaxSpeed * 100 / Weight;
@@ -58,6 +59,7 @@ namespace DrawAirplan
                     break;
             }
         }
+
         public override void DrawTransport(Graphics g)
         {
             Pen pen = new Pen(Color.Black);
@@ -140,6 +142,5 @@ namespace DrawAirplan
             g.FillRectangle(chassie, _startPosX + 202, _startPosY + 33, 2, 6);
             g.FillEllipse(chassie, _startPosX + 198, _startPosY + 36, 10, 10);
         }
-
     }
 }
