@@ -7,57 +7,114 @@ namespace DrawAirplan
     public partial class FormAerodrome : Form
     {
 
-        private readonly Aerodrome<Aircraft> aerodrome;
+        private readonly AerodromeCollection aerodromeCollection;
 
         public FormAerodrome()
         {
             InitializeComponent();
-            aerodrome = new Aerodrome<Aircraft>(pictureBoxAerodrome.Width, pictureBoxAerodrome.Height);
+            aerodromeCollection = new AerodromeCollection(pictureBoxAerodrome.Width, pictureBoxAerodrome.Height);
             Draw();
         }
 
-        private void Draw()
+        private void ReloadLevels()
         {
-            Bitmap bmp = new Bitmap(pictureBoxAerodrome.Width, pictureBoxAerodrome.Height);
-            Graphics gr = Graphics.FromImage(bmp);
-            aerodrome.Draw(gr);
-            pictureBoxAerodrome.Image = bmp;
+            int index = listBoxAerodromes.SelectedIndex;
+            listBoxAerodromes.Items.Clear();
+            for (int i = 0; i < aerodromeCollection.Keys.Count; i++)
+            {
+                listBoxAerodromes.Items.Add(aerodromeCollection.Keys[i]);
+            }
+            if (listBoxAerodromes.Items.Count > 0 && (index == -1 || index >=
+listBoxAerodromes.Items.Count))
+            {
+                listBoxAerodromes.SelectedIndex = 0;
+            }
+            else if (listBoxAerodromes.Items.Count > 0 && index > -1 && index <
+listBoxAerodromes.Items.Count)
+            {
+                listBoxAerodromes.SelectedIndex = index;
+            }
+        }
+
+
+        private void Draw()
+        {           
+            if (listBoxAerodromes.SelectedIndex > -1)
+            {
+                Bitmap bmp = new Bitmap(pictureBoxAerodrome.Width, pictureBoxAerodrome.Height);
+                Graphics gr = Graphics.FromImage(bmp);
+                aerodromeCollection[listBoxAerodromes.SelectedItem.ToString()].Draw(gr);
+                pictureBoxAerodrome.Image = bmp;
+            }
+        }
+
+        private void buttonAddAerodrome_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(textBoxNewLevelName.Text))
+            {
+                MessageBox.Show("Введите название парковки", "Ошибка",
+MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            aerodromeCollection.AddAerodrome(textBoxNewLevelName.Text);
+            ReloadLevels();
+        }
+
+        private void buttonDeleteAerodrome_Click(object sender, EventArgs e)
+        {
+            if (listBoxAerodromes.SelectedIndex > -1)
+            {
+                if (MessageBox.Show($"Удалить парковку {listBoxAerodromes.SelectedItem.ToString()}?", "Удаление", MessageBoxButtons.YesNo,
+MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    aerodromeCollection.DelAerodrome(listBoxAerodromes.Text);
+                    ReloadLevels();
+                }
+            }
         }
 
         private void buttonLandAircraft_Click(object sender, EventArgs e)
         {
-            ColorDialog dialog = new ColorDialog();
-            if (dialog.ShowDialog() == DialogResult.OK)
+            if (listBoxAerodromes.SelectedIndex > -1)
             {
-                var aircraft = new Aircraft(100, 1000, dialog.Color);
-                if (aerodrome + aircraft)
+                ColorDialog dialog = new ColorDialog();
+                if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    Draw();
-                }
-                else
-                {
-                    MessageBox.Show("Мест нет");
+                    var aircraft = new Aircraft(100, 1000, dialog.Color);
+                    if (aerodromeCollection[listBoxAerodromes.SelectedItem.ToString()] +
+aircraft)
+                    {
+                        Draw();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Парковка переполнена");
+                    }
                 }
             }
         }
 
         private void buttonLandAirbus_Click(object sender, EventArgs e)
         {
-            ColorDialog dialog = new ColorDialog();
-            if (dialog.ShowDialog() == DialogResult.OK)
+            if (listBoxAerodromes.SelectedIndex > -1)
             {
-                ColorDialog dialogDop = new ColorDialog();
-                if (dialogDop.ShowDialog() == DialogResult.OK)
-                {
-                    var aircraft = new Airbus(100, 1000, dialog.Color, dialogDop.Color,
-                   true, true);
-                    if (aerodrome + aircraft)
+                ColorDialog dialog = new ColorDialog();
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {                   
+                    ColorDialog dialogDop = new ColorDialog();
+                    if (dialogDop.ShowDialog() == DialogResult.OK)
                     {
-                        Draw();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Мест нет");
+                        var aircraft = new Airbus(100, 1000, dialog.Color,
+dialogDop.Color, true, true);
+                        if (aerodromeCollection[listBoxAerodromes.SelectedItem.ToString()]
++ aircraft)
+                        {
+                            Draw();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Парковка переполнена");
+                        }
                     }
                 }
             }
@@ -65,9 +122,10 @@ namespace DrawAirplan
 
         private void buttonTakeAircraft_Click(object sender, EventArgs e)
         {
-            if (maskedTextBox.Text != "")
+            if (listBoxAerodromes.SelectedIndex > -1 && maskedTextBox.Text != "")
             {
-                var aircraft = aerodrome - Convert.ToInt32(maskedTextBox.Text);
+                var aircraft = aerodromeCollection[listBoxAerodromes.SelectedItem.ToString()] -
+Convert.ToInt32(maskedTextBox.Text);
                 if (aircraft != null)
                 {
                     FormAircraft form = new FormAircraft();
@@ -76,6 +134,11 @@ namespace DrawAirplan
                 }
                 Draw();
             }
+        }
+
+        private void listBoxAerodromes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Draw();
         }
     }
 }

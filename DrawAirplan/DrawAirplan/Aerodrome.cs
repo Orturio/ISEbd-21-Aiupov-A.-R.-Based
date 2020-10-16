@@ -8,11 +8,13 @@ using System.Drawing;
 namespace DrawAirplan
 {
     public class Aerodrome<T> where T : class, ITransport
-    {       
-        private readonly T[] _places;
-       
-        private readonly int pictureWidth;
-       
+    {
+        private readonly List<T> _places;
+
+        private readonly int _maxCount;
+
+        private readonly int pictureWidth;    
+
         private readonly int pictureHeight;
         
         private readonly int _placeSizeWidth = 380;
@@ -25,42 +27,41 @@ namespace DrawAirplan
         {
             int width = picWidth / _placeSizeWidth;
             int height = picHeight / _placeSizeHeight;
-            _places = new T[width * height];
+            _places = new List<T>();
+            _maxCount = width * height;
             pictureWidth = picWidth;
             pictureHeight = picHeight;
         }
 
         public static bool operator +(Aerodrome<T> a, T aircraft)
         {
-            for (int i = 0; i < a._places.Length; i++)
+            if (a._places.Count >= a._maxCount)
             {
-                if (a._places[i] == null)
-                {
-                    aircraft.SetPosition(10 + a._placeSizeWidth * (int)(i / (int)(a.pictureHeight / a._placeSizeHeight)), 30 + a._placeSizeHeight * (int)(i % (int)(a.pictureHeight / a._placeSizeHeight)), a.pictureWidth, a.pictureHeight);
-                    a._places[i] = aircraft;
-                    return true;
-                }
+                return false;
             }
-            return false;
+            a._places.Add(aircraft);
+            return true;
         }
 
         public static T operator -(Aerodrome<T> a, int index)
         {
-            if ((index < a._places.Length) && (index >= 0))
+            if (index < -1 || index > a._places.Count)
             {
-                T aircraft = a._places[index];
-                a._places[index] = null;
-                return aircraft;
+                return null;
             }
-            return null;
+            T aircraft = a._places[index];
+            a._places.RemoveAt(index);
+            return aircraft;
         }
 
         public void Draw(Graphics g)
         {
             DrawMarking(g);
-            for (int i = 0; i < _places.Length; i++)
+            for (int i = 0; i < _places.Count; ++i)
             {
-                _places[i]?.DrawTransport(g);
+                _places[i].SetPosition(5 + i / 5 * _placeSizeWidth + 5, i % 5 *
+_placeSizeHeight + 30, pictureWidth, pictureHeight);
+                _places[i].DrawTransport(g);
             }
         }
         
