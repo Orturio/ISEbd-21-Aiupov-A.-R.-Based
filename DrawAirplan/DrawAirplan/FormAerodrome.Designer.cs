@@ -43,7 +43,7 @@
             // 
             this.pictureBoxAerodrome.Location = new System.Drawing.Point(0, -1);
             this.pictureBoxAerodrome.Name = "pictureBoxAerodrome";
-            this.pictureBoxAerodrome.Size = new System.Drawing.Size(669, 451);
+            this.pictureBoxAerodrome.Size = new System.Drawing.Size(799, 451);
             this.pictureBoxAerodrome.TabIndex = 0;
             this.pictureBoxAerodrome.TabStop = false;
             // 

@@ -15,7 +15,7 @@ namespace DrawAirplan
        
         private readonly int pictureHeight;
         
-        private readonly int _placeSizeWidth = 450;
+        private readonly int _placeSizeWidth = 380;
         
         private readonly int _placeSizeHeight = 90;
         
