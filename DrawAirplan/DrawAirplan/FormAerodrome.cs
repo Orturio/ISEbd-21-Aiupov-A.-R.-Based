@@ -57,6 +57,7 @@ MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             aerodromeCollection.AddAerodrome(textBoxNewLevelName.Text);
+            textBoxNewLevelName.Text = "";
             ReloadLevels();
         }
 
@@ -68,6 +69,7 @@ MessageBoxButtons.OK, MessageBoxIcon.Error);
 MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     aerodromeCollection.DelAerodrome(listBoxAerodromes.Text);
+                    textBoxNewLevelName.Text = "";
                     ReloadLevels();
                 }
             }
