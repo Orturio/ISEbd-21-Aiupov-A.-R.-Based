@@ -42,7 +42,17 @@ namespace DrawAirplan
         
         public Aerodrome<Vehicle> this[string ind]
         {
-            get { return aerodromeStages[ind]; }              
+            get
+            {
+                if (aerodromeStages.ContainsKey(ind))
+                {
+                    return aerodromeStages[ind];
+                }
+                else
+                {
+                    return null;
+                }
+            }
         }
     }
 }
