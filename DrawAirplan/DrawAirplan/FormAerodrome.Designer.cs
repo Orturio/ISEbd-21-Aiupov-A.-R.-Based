@@ -86,7 +86,7 @@
             // 
             // buttonTakeAircraft
             // 
-            this.buttonTakeAircraft.Location = new System.Drawing.Point(14, 63);
+            this.buttonTakeAircraft.Location = new System.Drawing.Point(15, 63);
             this.buttonTakeAircraft.Name = "buttonTakeAircraft";
             this.buttonTakeAircraft.Size = new System.Drawing.Size(77, 27);
             this.buttonTakeAircraft.TabIndex = 2;

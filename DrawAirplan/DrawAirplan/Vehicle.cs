@@ -21,7 +21,6 @@ namespace DrawAirplan
 
         public void SetPosition(int x, int y, int width, int height)
         {
-            // Продумать логику
             _startPosX = x;
             _startPosY = y;
             _pictureWidth = width;
