@@ -52,7 +52,7 @@ listBoxAerodromes.Items.Count)
         {
             if (string.IsNullOrEmpty(textBoxNewLevelName.Text))
             {
-                MessageBox.Show("Введите название парковки", "Ошибка",
+                MessageBox.Show("Введите название аэродрома", "Ошибка",
 MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -65,7 +65,7 @@ MessageBoxButtons.OK, MessageBoxIcon.Error);
         {
             if (listBoxAerodromes.SelectedIndex > -1)
             {
-                if (MessageBox.Show($"Удалить парковку {listBoxAerodromes.SelectedItem.ToString()}?", "Удаление", MessageBoxButtons.YesNo,
+                if (MessageBox.Show($"Удалить аэродром {listBoxAerodromes.SelectedItem.ToString()}?", "Удаление", MessageBoxButtons.YesNo,
 MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     aerodromeCollection.DelAerodrome(listBoxAerodromes.Text);
@@ -83,14 +83,13 @@ MessageBoxIcon.Question) == DialogResult.Yes)
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     var aircraft = new Aircraft(100, 1000, dialog.Color);
-                    if (aerodromeCollection[listBoxAerodromes.SelectedItem.ToString()] +
-aircraft)
+                    if (aerodromeCollection[listBoxAerodromes.SelectedItem.ToString()] + aircraft)
                     {
                         Draw();
                     }
                     else
                     {
-                        MessageBox.Show("Парковка переполнена");
+                        MessageBox.Show("Аэродром переполнен");
                     }
                 }
             }
@@ -108,8 +107,7 @@ aircraft)
                     {
                         var aircraft = new Airbus(100, 1000, dialog.Color,
 dialogDop.Color, true, true);
-                        if (aerodromeCollection[listBoxAerodromes.SelectedItem.ToString()]
-+ aircraft)
+                        if (aerodromeCollection[listBoxAerodromes.SelectedItem.ToString()] + aircraft)
                         {
                             Draw();
                         }
