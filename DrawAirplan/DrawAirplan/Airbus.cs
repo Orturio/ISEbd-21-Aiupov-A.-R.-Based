@@ -45,5 +45,10 @@ bool airplanChassis, bool lowerWindows):
                 g.DrawEllipse(pen, _startPosX + 120, _startPosY + 15, 5, 5);
             }
         }
+
+        public void SetDopColor(Color color)
+        {
+            DopColor = color;
+        }
     }
 }
