@@ -7,9 +7,10 @@ namespace DrawAirplan
     public partial class FormAircraftConfig : Form
     {
         Vehicle aircraft = null;
+        
+        //private event AircraftDelegate eventAddAircraft;
 
-        private event AircraftDelegate eventAddAircraft;
-
+        public event Action<Vehicle> eventAddAircraft;
 
         public FormAircraftConfig()
         {
@@ -28,6 +29,18 @@ namespace DrawAirplan
                 pictureBoxAircraft.Image = bmp;
             }
         }
+
+        //public void AddEvent(Action<Vehicle> ev)
+        //{
+        //    if (eventAddAircraft == null)
+        //    {
+        //        eventAddAircraft = new Action<Vehicle>(ev);
+        //    }
+        //    else
+        //    {
+        //        eventAddAircraft += ev;
+        //    }
+        //}
 
         private void labelAircraft_MouseDown(object sender, MouseEventArgs e)
         {
@@ -56,30 +69,20 @@ namespace DrawAirplan
             switch (e.Data.GetData(DataFormats.Text).ToString())
             {
                 case "Обычный самолёт":
-                    aircraft = new Aircraft(100, 500, Color.White);
+                    aircraft = new Aircraft((int)numericUpDownMaxSpeed.Value,
+(int)numericUpDownWeight.Value, Color.White);
                     break;
                 case "Эйрбас":
-                    aircraft = new Airbus(100, 500, Color.White, Color.Black, true, true);
+                    aircraft = new Airbus((int)numericUpDownMaxSpeed.Value,
+ (int)numericUpDownWeight.Value, Color.White, Color.Black, checkBoxDopChassie.Checked, checkBoxLowerWindows.Checked);
                     break;
             }
             DrawAircraft();
         }
 
-        public void AddEvent(AircraftDelegate ev)
-        {
-            if (eventAddAircraft == null)
-            {
-                eventAddAircraft = new AircraftDelegate(ev);
-            }
-            else
-            {
-                eventAddAircraft += ev;
-            }
-        }
-
         private void panelColor_MouseDown(object sender, MouseEventArgs e)
         {
-            ((Panel)sender).DoDragDrop(((Panel)sender).BackColor, DragDropEffects.Move | DragDropEffects.Copy);
+            ((Panel)sender).DoDragDrop(((Panel)sender).BackColor.Name, DragDropEffects.Move | DragDropEffects.Copy);
         }
 
         private void labelBaseColor_DragEnter(object sender, DragEventArgs e)
@@ -95,18 +98,27 @@ namespace DrawAirplan
         }
 
         private void labelBaseColor_DragDrop(object sender, DragEventArgs e)
-        {
-            // Прописать логику смены базового цвета
+        {          
+            if (aircraft != null)
+            {
+                aircraft.SetMainColor(Color.FromName(e.Data.GetData(DataFormats.Text).ToString()));
+                DrawAircraft();
+            }          
         }
 
         private void labelDopColor_DragDrop(object sender, DragEventArgs e)
         {
-            // Прописать логику смены дополнительного цвета, если объект является объектом дочернего класса
+            if (aircraft != null && aircraft is Airbus)
+            {
+                (aircraft as Airbus).SetDopColor(Color.FromName(e.Data.GetData(DataFormats.Text).ToString()));
+                DrawAircraft();
+            }
         }
         
         private void buttonOk_Click(object sender, EventArgs e)
         {
             eventAddAircraft?.Invoke(aircraft);
+            Close();
         }        
     }
 }

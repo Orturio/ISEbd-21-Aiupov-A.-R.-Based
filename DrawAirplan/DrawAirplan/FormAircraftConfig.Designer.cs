@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.groupBoxParameters = new System.Windows.Forms.GroupBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.numericUpDownWeightOfAircraft = new System.Windows.Forms.NumericUpDown();
+            this.checkBoxLowerWindows = new System.Windows.Forms.CheckBox();
+            this.checkBoxDopChassie = new System.Windows.Forms.CheckBox();
+            this.numericUpDownWeight = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownMaxSpeed = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -54,7 +54,7 @@
             this.buttonOk = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.groupBoxParameters.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWeightOfAircraft)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMaxSpeed)).BeginInit();
             this.groupBoxAircraft.SuspendLayout();
             this.panelAircraft.SuspendLayout();
@@ -64,9 +64,9 @@
             // 
             // groupBoxParameters
             // 
-            this.groupBoxParameters.Controls.Add(this.checkBox2);
-            this.groupBoxParameters.Controls.Add(this.checkBox1);
-            this.groupBoxParameters.Controls.Add(this.numericUpDownWeightOfAircraft);
+            this.groupBoxParameters.Controls.Add(this.checkBoxLowerWindows);
+            this.groupBoxParameters.Controls.Add(this.checkBoxDopChassie);
+            this.groupBoxParameters.Controls.Add(this.numericUpDownWeight);
             this.groupBoxParameters.Controls.Add(this.numericUpDownMaxSpeed);
             this.groupBoxParameters.Controls.Add(this.label2);
             this.groupBoxParameters.Controls.Add(this.label1);
@@ -77,48 +77,48 @@
             this.groupBoxParameters.TabStop = false;
             this.groupBoxParameters.Text = "Параметры";
             // 
-            // checkBox2
+            // checkBoxLowerWindows
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Checked = true;
-            this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox2.Location = new System.Drawing.Point(158, 82);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(93, 17);
-            this.checkBox2.TabIndex = 5;
-            this.checkBox2.Text = "Нижние окна";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBoxLowerWindows.AutoSize = true;
+            this.checkBoxLowerWindows.Checked = true;
+            this.checkBoxLowerWindows.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxLowerWindows.Location = new System.Drawing.Point(158, 82);
+            this.checkBoxLowerWindows.Name = "checkBoxLowerWindows";
+            this.checkBoxLowerWindows.Size = new System.Drawing.Size(93, 17);
+            this.checkBoxLowerWindows.TabIndex = 5;
+            this.checkBoxLowerWindows.Text = "Нижние окна";
+            this.checkBoxLowerWindows.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // checkBoxDopChassie
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(158, 32);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(85, 17);
-            this.checkBox1.TabIndex = 4;
-            this.checkBox1.Text = "Доп. шасси";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBoxDopChassie.AutoSize = true;
+            this.checkBoxDopChassie.Checked = true;
+            this.checkBoxDopChassie.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxDopChassie.Location = new System.Drawing.Point(158, 32);
+            this.checkBoxDopChassie.Name = "checkBoxDopChassie";
+            this.checkBoxDopChassie.Size = new System.Drawing.Size(85, 17);
+            this.checkBoxDopChassie.TabIndex = 4;
+            this.checkBoxDopChassie.Text = "Доп. шасси";
+            this.checkBoxDopChassie.UseVisualStyleBackColor = true;
             // 
-            // numericUpDownWeightOfAircraft
+            // numericUpDownWeight
             // 
-            this.numericUpDownWeightOfAircraft.Location = new System.Drawing.Point(53, 79);
-            this.numericUpDownWeightOfAircraft.Maximum = new decimal(new int[] {
+            this.numericUpDownWeight.Location = new System.Drawing.Point(53, 79);
+            this.numericUpDownWeight.Maximum = new decimal(new int[] {
             1000,
             0,
             0,
             0});
-            this.numericUpDownWeightOfAircraft.Minimum = new decimal(new int[] {
+            this.numericUpDownWeight.Minimum = new decimal(new int[] {
             100,
             0,
             0,
             0});
-            this.numericUpDownWeightOfAircraft.Name = "numericUpDownWeightOfAircraft";
-            this.numericUpDownWeightOfAircraft.Size = new System.Drawing.Size(74, 20);
-            this.numericUpDownWeightOfAircraft.TabIndex = 3;
-            this.numericUpDownWeightOfAircraft.Value = new decimal(new int[] {
-            110,
+            this.numericUpDownWeight.Name = "numericUpDownWeight";
+            this.numericUpDownWeight.Size = new System.Drawing.Size(74, 20);
+            this.numericUpDownWeight.TabIndex = 3;
+            this.numericUpDownWeight.Value = new decimal(new int[] {
+            100,
             0,
             0,
             0});
@@ -213,7 +213,7 @@
             this.pictureBoxAircraft.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBoxAircraft.Location = new System.Drawing.Point(3, 4);
             this.pictureBoxAircraft.Name = "pictureBoxAircraft";
-            this.pictureBoxAircraft.Size = new System.Drawing.Size(237, 102);
+            this.pictureBoxAircraft.Size = new System.Drawing.Size(248, 102);
             this.pictureBoxAircraft.TabIndex = 4;
             this.pictureBoxAircraft.TabStop = false;
             // 
@@ -225,10 +225,10 @@
             this.groupBoxColors.Controls.Add(this.panelBlack);
             this.groupBoxColors.Controls.Add(this.panelBlue);
             this.groupBoxColors.Controls.Add(this.panelAqua);
+            this.groupBoxColors.Controls.Add(this.labelMainColor);
             this.groupBoxColors.Controls.Add(this.panelYellow);
             this.groupBoxColors.Controls.Add(this.panelRed);
             this.groupBoxColors.Controls.Add(this.labelDopColor);
-            this.groupBoxColors.Controls.Add(this.labelMainColor);
             this.groupBoxColors.Location = new System.Drawing.Point(407, 12);
             this.groupBoxColors.Name = "groupBoxColors";
             this.groupBoxColors.Size = new System.Drawing.Size(176, 157);
@@ -260,6 +260,7 @@
             // 
             this.panelGray.BackColor = System.Drawing.Color.Gray;
             this.panelGray.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelGray.ForeColor = System.Drawing.Color.Gray;
             this.panelGray.Location = new System.Drawing.Point(47, 112);
             this.panelGray.Name = "panelGray";
             this.panelGray.Size = new System.Drawing.Size(35, 35);
@@ -327,6 +328,7 @@
             this.labelDopColor.Text = "Доп. цвет";
             this.labelDopColor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.labelDopColor.DragDrop += new System.Windows.Forms.DragEventHandler(this.labelDopColor_DragDrop);
+            this.labelDopColor.DragEnter += new System.Windows.Forms.DragEventHandler(this.labelBaseColor_DragEnter);
             // 
             // labelMainColor
             // 
@@ -375,7 +377,7 @@
             this.Text = "FormAircraftConfig";
             this.groupBoxParameters.ResumeLayout(false);
             this.groupBoxParameters.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWeightOfAircraft)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWeight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMaxSpeed)).EndInit();
             this.groupBoxAircraft.ResumeLayout(false);
             this.panelAircraft.ResumeLayout(false);
@@ -388,12 +390,12 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBoxParameters;
-        private System.Windows.Forms.NumericUpDown numericUpDownWeightOfAircraft;
+        private System.Windows.Forms.NumericUpDown numericUpDownWeight;
         private System.Windows.Forms.NumericUpDown numericUpDownMaxSpeed;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBoxLowerWindows;
+        private System.Windows.Forms.CheckBox checkBoxDopChassie;
         private System.Windows.Forms.GroupBox groupBoxAircraft;
         private System.Windows.Forms.Label labelAirbus;
         private System.Windows.Forms.Label labelAircraft;
