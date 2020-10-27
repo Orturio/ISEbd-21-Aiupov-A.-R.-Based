@@ -14,8 +14,6 @@ namespace DrawAirplan
         public FormAircraftConfig()
         {
             InitializeComponent();
-
-            // привязать panelColor_MouseDown к панелям с цветами
             buttonCancel.Click += (object sender, EventArgs e) => { Close(); };
         }
 
@@ -81,12 +79,19 @@ namespace DrawAirplan
 
         private void panelColor_MouseDown(object sender, MouseEventArgs e)
         {
-            // Прописать логику вызова dragDrop для панелей, используя sender
+            ((Panel)sender).DoDragDrop(((Panel)sender).BackColor, DragDropEffects.Move | DragDropEffects.Copy);
         }
 
         private void labelBaseColor_DragEnter(object sender, DragEventArgs e)
         {
-            // Прописать логику проверки приходящего значения на тип Color
+            if (e.Data.GetDataPresent(DataFormats.Text))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
         }
 
         private void labelBaseColor_DragDrop(object sender, DragEventArgs e)
@@ -98,10 +103,10 @@ namespace DrawAirplan
         {
             // Прописать логику смены дополнительного цвета, если объект является объектом дочернего класса
         }
-
+        
         private void buttonOk_Click(object sender, EventArgs e)
         {
             eventAddAircraft?.Invoke(aircraft);
-        }
+        }        
     }
 }
