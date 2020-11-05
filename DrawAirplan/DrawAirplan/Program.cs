@@ -6,8 +6,6 @@ using System.Windows.Forms;
 
 namespace DrawAirplan
 {
-    //public delegate void AircraftDelegate(Vehicle aircraft);
-
     static class Program
     {        
         /// <summary>

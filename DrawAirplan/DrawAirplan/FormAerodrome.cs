@@ -99,8 +99,7 @@ Convert.ToInt32(maskedTextBox.Text);
         private void buttonSetAircraft_Click(object sender, EventArgs e)
         {
             var formAircraftConfig = new FormAircraftConfig();
-            //formAircraftConfig.AddEvent(AddAircraft);
-            formAircraftConfig.eventAddAircraft += AddAircraft;
+            formAircraftConfig.AddEvent(AddAircraft);
             formAircraftConfig.Show();
         }
 

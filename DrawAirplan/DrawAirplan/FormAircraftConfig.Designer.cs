@@ -47,10 +47,10 @@
             this.panelBlack = new System.Windows.Forms.Panel();
             this.panelBlue = new System.Windows.Forms.Panel();
             this.panelAqua = new System.Windows.Forms.Panel();
+            this.labelMainColor = new System.Windows.Forms.Label();
             this.panelYellow = new System.Windows.Forms.Panel();
             this.panelRed = new System.Windows.Forms.Panel();
             this.labelDopColor = new System.Windows.Forms.Label();
-            this.labelMainColor = new System.Windows.Forms.Label();
             this.buttonOk = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.groupBoxParameters.SuspendLayout();
@@ -244,7 +244,6 @@
             this.panelLime.Name = "panelLime";
             this.panelLime.Size = new System.Drawing.Size(35, 35);
             this.panelLime.TabIndex = 9;
-            this.panelLime.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelColor_MouseDown);
             // 
             // panelFuchsia
             // 
@@ -254,7 +253,6 @@
             this.panelFuchsia.Name = "panelFuchsia";
             this.panelFuchsia.Size = new System.Drawing.Size(35, 35);
             this.panelFuchsia.TabIndex = 8;
-            this.panelFuchsia.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelColor_MouseDown);
             // 
             // panelGray
             // 
@@ -265,7 +263,6 @@
             this.panelGray.Name = "panelGray";
             this.panelGray.Size = new System.Drawing.Size(35, 35);
             this.panelGray.TabIndex = 7;
-            this.panelGray.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelColor_MouseDown);
             // 
             // panelBlack
             // 
@@ -275,7 +272,6 @@
             this.panelBlack.Name = "panelBlack";
             this.panelBlack.Size = new System.Drawing.Size(35, 35);
             this.panelBlack.TabIndex = 6;
-            this.panelBlack.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelColor_MouseDown);
             // 
             // panelBlue
             // 
@@ -285,7 +281,6 @@
             this.panelBlue.Name = "panelBlue";
             this.panelBlue.Size = new System.Drawing.Size(35, 35);
             this.panelBlue.TabIndex = 5;
-            this.panelBlue.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelColor_MouseDown);
             // 
             // panelAqua
             // 
@@ -295,40 +290,6 @@
             this.panelAqua.Name = "panelAqua";
             this.panelAqua.Size = new System.Drawing.Size(35, 35);
             this.panelAqua.TabIndex = 4;
-            this.panelAqua.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelColor_MouseDown);
-            // 
-            // panelYellow
-            // 
-            this.panelYellow.BackColor = System.Drawing.Color.Yellow;
-            this.panelYellow.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelYellow.Location = new System.Drawing.Point(47, 71);
-            this.panelYellow.Name = "panelYellow";
-            this.panelYellow.Size = new System.Drawing.Size(35, 35);
-            this.panelYellow.TabIndex = 3;
-            this.panelYellow.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelColor_MouseDown);
-            // 
-            // panelRed
-            // 
-            this.panelRed.BackColor = System.Drawing.Color.Red;
-            this.panelRed.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelRed.Location = new System.Drawing.Point(6, 71);
-            this.panelRed.Name = "panelRed";
-            this.panelRed.Size = new System.Drawing.Size(35, 35);
-            this.panelRed.TabIndex = 2;
-            this.panelRed.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelColor_MouseDown);
-            // 
-            // labelDopColor
-            // 
-            this.labelDopColor.AllowDrop = true;
-            this.labelDopColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.labelDopColor.Location = new System.Drawing.Point(88, 25);
-            this.labelDopColor.Name = "labelDopColor";
-            this.labelDopColor.Size = new System.Drawing.Size(76, 34);
-            this.labelDopColor.TabIndex = 1;
-            this.labelDopColor.Text = "Доп. цвет";
-            this.labelDopColor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.labelDopColor.DragDrop += new System.Windows.Forms.DragEventHandler(this.labelDopColor_DragDrop);
-            this.labelDopColor.DragEnter += new System.Windows.Forms.DragEventHandler(this.labelBaseColor_DragEnter);
             // 
             // labelMainColor
             // 
@@ -342,6 +303,37 @@
             this.labelMainColor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.labelMainColor.DragDrop += new System.Windows.Forms.DragEventHandler(this.labelBaseColor_DragDrop);
             this.labelMainColor.DragEnter += new System.Windows.Forms.DragEventHandler(this.labelBaseColor_DragEnter);
+            // 
+            // panelYellow
+            // 
+            this.panelYellow.BackColor = System.Drawing.Color.Yellow;
+            this.panelYellow.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelYellow.Location = new System.Drawing.Point(47, 71);
+            this.panelYellow.Name = "panelYellow";
+            this.panelYellow.Size = new System.Drawing.Size(35, 35);
+            this.panelYellow.TabIndex = 3;
+            // 
+            // panelRed
+            // 
+            this.panelRed.BackColor = System.Drawing.Color.Red;
+            this.panelRed.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelRed.Location = new System.Drawing.Point(6, 71);
+            this.panelRed.Name = "panelRed";
+            this.panelRed.Size = new System.Drawing.Size(35, 35);
+            this.panelRed.TabIndex = 2;
+            // 
+            // labelDopColor
+            // 
+            this.labelDopColor.AllowDrop = true;
+            this.labelDopColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.labelDopColor.Location = new System.Drawing.Point(88, 25);
+            this.labelDopColor.Name = "labelDopColor";
+            this.labelDopColor.Size = new System.Drawing.Size(76, 34);
+            this.labelDopColor.TabIndex = 1;
+            this.labelDopColor.Text = "Доп. цвет";
+            this.labelDopColor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelDopColor.DragDrop += new System.Windows.Forms.DragEventHandler(this.labelDopColor_DragDrop);
+            this.labelDopColor.DragEnter += new System.Windows.Forms.DragEventHandler(this.labelBaseColor_DragEnter);
             // 
             // buttonOk
             // 

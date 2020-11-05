@@ -7,14 +7,21 @@ namespace DrawAirplan
     public partial class FormAircraftConfig : Form
     {
         Vehicle aircraft = null;
-        
-        //private event AircraftDelegate eventAddAircraft;
-
-        public event Action<Vehicle> eventAddAircraft;
+               
+        private event Action<Vehicle> eventAddAircraft;
 
         public FormAircraftConfig()
         {
             InitializeComponent();
+            this.panelRed.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelColor_MouseDown);
+            this.panelYellow.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelColor_MouseDown);
+            this.panelAqua.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelColor_MouseDown);
+            this.panelBlue.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelColor_MouseDown);
+            this.panelBlack.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelColor_MouseDown);
+            this.panelGray.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelColor_MouseDown);
+            this.panelFuchsia.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelColor_MouseDown);
+            this.panelLime.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelColor_MouseDown);
+
             buttonCancel.Click += (object sender, EventArgs e) => { Close(); };
         }
 
@@ -30,17 +37,17 @@ namespace DrawAirplan
             }
         }
 
-        //public void AddEvent(Action<Vehicle> ev)
-        //{
-        //    if (eventAddAircraft == null)
-        //    {
-        //        eventAddAircraft = new Action<Vehicle>(ev);
-        //    }
-        //    else
-        //    {
-        //        eventAddAircraft += ev;
-        //    }
-        //}
+        public void AddEvent(Action<Vehicle> ev)
+        {
+            if (eventAddAircraft == null)
+            {
+                eventAddAircraft = new Action<Vehicle>(ev);
+            }
+            else
+            {
+                eventAddAircraft += ev;
+            }
+        }
 
         private void labelAircraft_MouseDown(object sender, MouseEventArgs e)
         {
@@ -74,7 +81,7 @@ namespace DrawAirplan
                     break;
                 case "Эйрбас":
                     aircraft = new Airbus((int)numericUpDownMaxSpeed.Value,
- (int)numericUpDownWeight.Value, Color.White, Color.Black, checkBoxDopChassie.Checked, checkBoxLowerWindows.Checked);
+(int)numericUpDownWeight.Value, Color.White, Color.Black, checkBoxDopChassie.Checked, checkBoxLowerWindows.Checked);
                     break;
             }
             DrawAircraft();
@@ -82,12 +89,12 @@ namespace DrawAirplan
 
         private void panelColor_MouseDown(object sender, MouseEventArgs e)
         {
-            ((Panel)sender).DoDragDrop(((Panel)sender).BackColor.Name, DragDropEffects.Move | DragDropEffects.Copy);
+            ((Panel)sender).DoDragDrop(((Panel)sender).BackColor, DragDropEffects.Move | DragDropEffects.Copy);
         }
 
         private void labelBaseColor_DragEnter(object sender, DragEventArgs e)
         {
-            if (e.Data.GetDataPresent(DataFormats.Text))
+            if (e.Data.GetDataPresent(typeof(Color)))
             {
                 e.Effect = DragDropEffects.Copy;
             }
@@ -101,7 +108,7 @@ namespace DrawAirplan
         {          
             if (aircraft != null)
             {
-                aircraft.SetMainColor(Color.FromName(e.Data.GetData(DataFormats.Text).ToString()));
+                aircraft.SetMainColor((Color)e.Data.GetData(typeof(Color)));
                 DrawAircraft();
             }          
         }
@@ -110,7 +117,7 @@ namespace DrawAirplan
         {
             if (aircraft != null && aircraft is Airbus)
             {
-                (aircraft as Airbus).SetDopColor(Color.FromName(e.Data.GetData(DataFormats.Text).ToString()));
+                (aircraft as Airbus).SetDopColor((Color)e.Data.GetData(typeof(Color)));
                 DrawAircraft();
             }
         }
