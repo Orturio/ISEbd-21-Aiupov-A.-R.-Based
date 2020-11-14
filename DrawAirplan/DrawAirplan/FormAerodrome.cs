@@ -73,7 +73,7 @@ MessageBoxIcon.Question) == DialogResult.Yes)
                     ReloadLevels();
                 }
             }
-        }      
+        }
 
         private void buttonTakeAircraft_Click(object sender, EventArgs e)
         {
