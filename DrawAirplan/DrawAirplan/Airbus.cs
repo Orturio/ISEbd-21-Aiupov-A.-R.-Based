@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System;
 
 namespace DrawAirplan
 {
@@ -17,6 +18,20 @@ bool airplanChassis, bool lowerWindows):
             DopColor = dopColor;
             AirplanChassis = airplanChassis;
             LowerWindows = lowerWindows;          
+        }
+
+        public Airbus(string info) : base(info)
+        {
+            string[] strs = info.Split(separator);
+            if (strs.Length == 6)
+            {
+                MaxSpeed = Convert.ToInt32(strs[0]);
+                Weight = Convert.ToInt32(strs[1]);
+                MainColor = Color.FromName(strs[2]);
+                DopColor = Color.FromName(strs[3]);
+                AirplanChassis = Convert.ToBoolean(strs[4]);
+                LowerWindows = Convert.ToBoolean(strs[5]);                
+            }
         }
 
         public override void DrawTransport(Graphics g)
@@ -49,6 +64,11 @@ bool airplanChassis, bool lowerWindows):
         public void SetDopColor(Color color)
         {
             DopColor = color;
+        }
+
+        public override string ToString()
+        {
+            return$"{base.ToString()}{separator}{DopColor.Name}{separator}{AirplanChassis}{separator}{LowerWindows}";
         }
     }
 }

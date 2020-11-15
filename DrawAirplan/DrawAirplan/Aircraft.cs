@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System;
 
 namespace DrawAirplan
 {
@@ -7,14 +8,27 @@ namespace DrawAirplan
         protected readonly int airplanWidth = 220;
         
         protected readonly int airplanHeight = 100;
-        
+
+        protected readonly char separator = ';';
+
         public Aircraft(int maxSpeed, float weight, Color mainColor)
         {
             MaxSpeed = maxSpeed;
             Weight = weight;
             MainColor = mainColor;
         }
-        
+
+        public Aircraft(string info)
+        {
+            string[] strs = info.Split(separator);
+            if (strs.Length == 3)
+            {
+                MaxSpeed = Convert.ToInt32(strs[0]);
+                Weight = Convert.ToInt32(strs[1]);
+                MainColor = Color.FromName(strs[2]);
+            }
+        }
+
         protected Aircraft(int maxSpeed, float weight, Color mainColor, int airplanHeight, int airplanWidth)
         {
             MaxSpeed = maxSpeed;
@@ -141,6 +155,11 @@ namespace DrawAirplan
             g.FillRectangle(chassie, _startPosX + 195, _startPosY + 28, 15, 7);
             g.FillRectangle(chassie, _startPosX + 202, _startPosY + 33, 2, 6);
             g.FillEllipse(chassie, _startPosX + 198, _startPosY + 36, 10, 10);
+        }
+
+        public override string ToString()
+        {
+            return $"{MaxSpeed}{separator}{Weight}{separator}{MainColor.Name}";
         }
     }
 }
