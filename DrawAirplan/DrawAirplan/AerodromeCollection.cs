@@ -58,7 +58,7 @@ namespace DrawAirplan
             }
         }
 
-        public bool SaveData(string filename)
+        public void SaveData(string filename)
         {
             if (File.Exists(filename))
             {
@@ -95,14 +95,13 @@ namespace DrawAirplan
                     }
                 }                
             }
-            return true;
         }
 
-        public bool LoadData(string filename)
+        public void LoadData(string filename)
         {
             if (!File.Exists(filename))
             {
-                return false;
+                throw new FileNotFoundException();
             }
 
             using (StreamReader sr = new StreamReader(filename))
@@ -117,7 +116,7 @@ namespace DrawAirplan
                 else
                 {
                     //если нет такой записи, то это не те данные
-                    return false;
+                    throw new ErrorFormatException();
                 }
 
                 line = sr.ReadLine();
@@ -143,14 +142,13 @@ namespace DrawAirplan
                         var result = aerodromeStages[key] + aircraft;
                         if (!result)
                         {
-                            return false;
+                            throw new AerodromeOccupiedPlaceException();
                         }
 
                         line = sr.ReadLine();
                     }
                 }
             }
-            return true;
         }        
     }
 }

@@ -37,21 +37,22 @@ namespace DrawAirplan
         {
             if (a._places.Count >= a._maxCount)
             {
-                return false;
+                throw new AerodromeOverflowException();
             }
             a._places.Add(aircraft);
             return true;
         }
 
+
         public static T operator -(Aerodrome<T> a, int index)
         {
             if (index < -1 || index > a._places.Count)
             {
-                return null;
+                throw new AerodromeNotFoundException(index);
             }
-            T aircraft = a._places[index];
+            T car = a._places[index];
             a._places.RemoveAt(index);
-            return aircraft;
+            return car;
         }
 
         public void Draw(Graphics g)
@@ -59,7 +60,7 @@ namespace DrawAirplan
             DrawMarking(g);
             for (int i = 0; i < _places.Count; ++i)
             {
-                _places[i].SetPosition(5 + i / 5 * _placeSizeWidth + 5, i % 5 *
+                _places[i].SetPosition(5 + i / 4 * _placeSizeWidth + 5, i % 4 *
 _placeSizeHeight + 30, pictureWidth, pictureHeight);
                 _places[i].DrawTransport(g);
             }
