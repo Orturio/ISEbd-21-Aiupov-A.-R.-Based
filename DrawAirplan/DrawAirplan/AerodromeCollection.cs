@@ -116,7 +116,7 @@ namespace DrawAirplan
                 else
                 {
                     //если нет такой записи, то это не те данные
-                    throw new ErrorFormatException();
+                    throw new FormatException();
                 }
 
                 line = sr.ReadLine();
@@ -142,7 +142,7 @@ namespace DrawAirplan
                         var result = aerodromeStages[key] + aircraft;
                         if (!result)
                         {
-                            throw new AerodromeOccupiedPlaceException();
+                            throw new NullReferenceException();
                         }
 
                         line = sr.ReadLine();

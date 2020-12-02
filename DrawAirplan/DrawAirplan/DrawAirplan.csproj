@@ -57,12 +57,10 @@
     <Compile Include="Aerodrome.cs" />
     <Compile Include="AerodromeCollection.cs" />
     <Compile Include="AerodromeNotFoundException.cs" />
-    <Compile Include="AerodromeOccupiedPlaceException.cs" />
     <Compile Include="AerodromeOverflowException.cs" />
     <Compile Include="Airbus.cs" />
     <Compile Include="Aircraft.cs" />
     <Compile Include="Direction.cs" />
-    <Compile Include="ErrorFormatException.cs" />
     <Compile Include="FormAerodrome.cs">
       <SubType>Form</SubType>
     </Compile>

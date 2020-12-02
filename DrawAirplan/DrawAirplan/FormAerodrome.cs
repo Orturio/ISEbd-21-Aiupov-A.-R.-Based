@@ -57,6 +57,7 @@ listBoxAerodromes.Items.Count)
             {
                 MessageBox.Show("Введите название аэродрома", "Ошибка",
 MessageBoxButtons.OK, MessageBoxIcon.Error);
+                logger.Warn("Не введено название аэродрома");
                 return;
             }
             logger.Info($"Добавили аэродром {textBoxNewLevelName.Text}");
@@ -98,12 +99,12 @@ MessageBoxIcon.Question) == DialogResult.Yes)
                 catch (AerodromeNotFoundException ex)
                 {
                     MessageBox.Show(ex.Message, "Не найдено", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    logger.Warn($"{ex.Message}");
+                    logger.Warn("Не найдено");
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Неизвестная ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    logger.Warn($"{ex.Message}");
+                    logger.Warn("Неизвестная ошибка");
                 }
 
             }
@@ -143,12 +144,12 @@ MessageBoxIcon.Question) == DialogResult.Yes)
                 catch (AerodromeOverflowException ex)
                 {
                     MessageBox.Show(ex.Message, "Переполнение", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    logger.Warn($"{ex.Message}");
+                    logger.Warn("Переполнение");
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Неизвестная ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    logger.Warn($"{ex.Message}");
+                    logger.Warn("Неизвестная ошибка");
                 }
             }
         }
@@ -166,7 +167,7 @@ MessageBoxIcon.Question) == DialogResult.Yes)
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Неизвестная ошибка при сохранении", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    logger.Warn($"{ex.Message}");
+                    logger.Warn("Неизвестная ошибка при сохранении");
                 }
             }
         }
@@ -183,14 +184,10 @@ MessageBoxIcon.Question) == DialogResult.Yes)
                     ReloadLevels();
                     Draw();
                 }
-                catch (AerodromeOccupiedPlaceException ex)
-                {
-                    MessageBox.Show(ex.Message, "Занятое место", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Неизвестная ошибка при загрузки", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    logger.Warn($"{ex.Message}");
+                    logger.Warn("Неизвестная ошибка при загрузки");
                 }
             }
         }
