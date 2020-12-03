@@ -112,7 +112,7 @@ MessageBoxIcon.Question) == DialogResult.Yes)
 
         private void listBoxAerodromes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            logger.Info($"Перешли на парковку { listBoxAerodromes.SelectedItem.ToString()}");
+            logger.Info($"Перешли на аэродром { listBoxAerodromes.SelectedItem.ToString()}");
             Draw();
         }
 
