@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace DrawAirplan
 {
-    public class Aerodrome<T> where T : class, ITransport
+    public class Aerodrome<T> : IEnumerator<T>, IEnumerable<T> where T : class, ITransport
     {
         private readonly List<T> _places;
 
@@ -20,7 +20,13 @@ namespace DrawAirplan
         private readonly int _placeSizeWidth = 380;
         
         private readonly int _placeSizeHeight = 90;
-        
+
+        private int _currentIndex;
+
+        public T Current => _places[_currentIndex];
+
+        object IEnumerator.Current => _places[_currentIndex];
+
         /// <param name="picWidth">Рамзер парковки - ширина</param>
         /// <param name="picHeight">Рамзер парковки - высота</param>
         public Aerodrome(int picWidth, int picHeight)
@@ -31,6 +37,7 @@ namespace DrawAirplan
             _maxCount = width * height;
             pictureWidth = picWidth;
             pictureHeight = picHeight;
+            _currentIndex = -1;
         }
 
         public static bool operator +(Aerodrome<T> a, T aircraft)
@@ -38,6 +45,10 @@ namespace DrawAirplan
             if (a._places.Count >= a._maxCount)
             {
                 throw new AerodromeOverflowException();
+            }
+            if (a._places.Contains(aircraft))
+            {
+                throw new AerodromeAlreadyHaveException();
             }
             a._places.Add(aircraft);
             return true;
@@ -88,6 +99,33 @@ _placeSizeHeight + 30, pictureWidth, pictureHeight);
                 return null;
             }
             return _places[index];
+        }
+
+        public void Sort() => _places.Sort((IComparer<T>)new AircraftComparer());
+
+        public void Dispose()
+        {
+        }
+
+        public bool MoveNext()
+        {
+            _currentIndex++;
+            return (_currentIndex < _places.Count);
+        }
+
+        public void Reset()
+        {
+            _currentIndex = -1;
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            return this;
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this;
         }
     }
 }

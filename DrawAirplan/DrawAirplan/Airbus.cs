@@ -3,7 +3,7 @@ using System;
 
 namespace DrawAirplan
 {
-    public class Airbus : Aircraft
+    public class Airbus : Aircraft, IEquatable<Airbus>
     {      
         public Color DopColor { private set; get; }
        
@@ -69,6 +69,59 @@ bool airplanChassis, bool lowerWindows):
         public override string ToString()
         {
             return$"{base.ToString()}{separator}{DopColor.Name}{separator}{AirplanChassis}{separator}{LowerWindows}";
+        }
+
+        public bool Equals(Airbus other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+            if (GetType().Name != other.GetType().Name)
+            {
+                return false;
+            }
+            if (MaxSpeed != other.MaxSpeed)
+            {
+                return false;
+            }
+            if (Weight != other.Weight)
+            {
+                return false;
+            }
+            if (MainColor != other.MainColor)
+            {
+                return false;
+            }
+            if (DopColor != other.DopColor)
+            {
+                return false;
+            }
+            if (AirplanChassis != other.AirplanChassis)
+            {
+                return false;
+            }
+            if (LowerWindows != other.LowerWindows)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public override bool Equals(Object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+            if (!(obj is Airbus carObj))
+            {
+                return false;
+            }
+            else
+            {
+                return Equals(carObj);
+            }
         }
     }
 }

@@ -41,12 +41,13 @@
             this.buttonDeleteAerodrome = new System.Windows.Forms.Button();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.загрузитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.сохранитьToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.загрузитьToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.загрузитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.buttonSort = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAerodrome)).BeginInit();
             this.groupBoxAircraft.SuspendLayout();
             this.menuStrip.SuspendLayout();
@@ -172,6 +173,20 @@
             this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.файлToolStripMenuItem.Text = "Файл";
             // 
+            // сохранитьToolStripMenuItem1
+            // 
+            this.сохранитьToolStripMenuItem1.Name = "сохранитьToolStripMenuItem1";
+            this.сохранитьToolStripMenuItem1.Size = new System.Drawing.Size(133, 22);
+            this.сохранитьToolStripMenuItem1.Text = "Сохранить";
+            this.сохранитьToolStripMenuItem1.Click += new System.EventHandler(this.сохранитьToolStripMenuItem_Click);
+            // 
+            // загрузитьToolStripMenuItem1
+            // 
+            this.загрузитьToolStripMenuItem1.Name = "загрузитьToolStripMenuItem1";
+            this.загрузитьToolStripMenuItem1.Size = new System.Drawing.Size(133, 22);
+            this.загрузитьToolStripMenuItem1.Text = "Загрузить";
+            this.загрузитьToolStripMenuItem1.Click += new System.EventHandler(this.загрузитьToolStripMenuItem_Click);
+            // 
             // сохранитьToolStripMenuItem
             // 
             this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
@@ -184,20 +199,6 @@
             this.загрузитьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.загрузитьToolStripMenuItem.Text = "Загрузить";
             // 
-            // сохранитьToolStripMenuItem1
-            // 
-            this.сохранитьToolStripMenuItem1.Name = "сохранитьToolStripMenuItem1";
-            this.сохранитьToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.сохранитьToolStripMenuItem1.Text = "Сохранить";
-            this.сохранитьToolStripMenuItem1.Click += new System.EventHandler(this.сохранитьToolStripMenuItem_Click);
-            // 
-            // загрузитьToolStripMenuItem1
-            // 
-            this.загрузитьToolStripMenuItem1.Name = "загрузитьToolStripMenuItem1";
-            this.загрузитьToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.загрузитьToolStripMenuItem1.Text = "Загрузить";
-            this.загрузитьToolStripMenuItem1.Click += new System.EventHandler(this.загрузитьToolStripMenuItem_Click);
-            // 
             // saveFileDialog
             // 
             this.saveFileDialog.Filter = "txt file | *.txt";
@@ -207,11 +208,22 @@
             this.openFileDialog.FileName = "openFileDialog";
             this.openFileDialog.Filter = "txt file | *.txt";
             // 
+            // buttonSort
+            // 
+            this.buttonSort.Location = new System.Drawing.Point(675, 252);
+            this.buttonSort.Name = "buttonSort";
+            this.buttonSort.Size = new System.Drawing.Size(107, 34);
+            this.buttonSort.TabIndex = 10;
+            this.buttonSort.Text = "Соритровать";
+            this.buttonSort.UseVisualStyleBackColor = true;
+            this.buttonSort.Click += new System.EventHandler(this.buttonSort_Click);
+            // 
             // FormAerodrome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.buttonSort);
             this.Controls.Add(this.buttonDeleteAerodrome);
             this.Controls.Add(this.listBoxAerodromes);
             this.Controls.Add(this.buttonAddAerodrome);
@@ -254,5 +266,6 @@
         private System.Windows.Forms.ToolStripMenuItem загрузитьToolStripMenuItem;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.Button buttonSort;
     }
 }
